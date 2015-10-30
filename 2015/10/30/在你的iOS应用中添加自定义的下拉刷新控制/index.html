@@ -6,28 +6,32 @@
   <title>在你的iOS应用中添加自定义的下拉刷新控制 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="译自Appcoda，作者 gabriel theodoropoulos
+
 演示应用程序下面的动画显示的是我们在这个教程中准备实现的自定义下拉刷新控件
 
 正如你所见，tableview中包含一些假的数据，因为我们这里的目的并不是从网络服务器中获取真实的数据。这里最重要的部分是在刷新过程中，菊花不会显示；相反，”APPCODE”这个词会在刷新过程中以自定义的样式显示动画效果。
-如果你想知道假的刷新是在什">
+如果你想知道假的刷新是在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在你的iOS应用中添加自定义的下拉刷新控制">
 <meta property="og:url" content="http://yoursite.com/2015/10/30/在你的iOS应用中添加自定义的下拉刷新控制/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="译自Appcoda，作者 gabriel theodoropoulos
+
 演示应用程序下面的动画显示的是我们在这个教程中准备实现的自定义下拉刷新控件
 
 正如你所见，tableview中包含一些假的数据，因为我们这里的目的并不是从网络服务器中获取真实的数据。这里最重要的部分是在刷新过程中，菊花不会显示；相反，”APPCODE”这个词会在刷新过程中以自定义的样式显示动画效果。
-如果你想知道假的刷新是在什">
-<meta property="og:image" content="http://yoursite.com/./t38_1_final_sample.gif">
-<meta property="og:updated_time" content="2015-10-30T03:59:06.000Z">
+如果你想知道假的刷新是在">
+<meta property="og:image" content="http://7xnk7q.com1.z0.glb.clouddn.com/pull-to-refresh-featured-1024x533.jpg">
+<meta property="og:image" content="http://7xnk7q.com1.z0.glb.clouddn.com/t38_1_final_sample.gif">
+<meta property="og:updated_time" content="2015-10-30T04:05:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在你的iOS应用中添加自定义的下拉刷新控制">
 <meta name="twitter:description" content="译自Appcoda，作者 gabriel theodoropoulos
+
 演示应用程序下面的动画显示的是我们在这个教程中准备实现的自定义下拉刷新控件
 
 正如你所见，tableview中包含一些假的数据，因为我们这里的目的并不是从网络服务器中获取真实的数据。这里最重要的部分是在刷新过程中，菊花不会显示；相反，”APPCODE”这个词会在刷新过程中以自定义的样式显示动画效果。
-如果你想知道假的刷新是在什">
+如果你想知道假的刷新是在">
   
   
     <link rel="icon" href="/favicon.png">
@@ -118,8 +122,9 @@
       </p>
       <div class="article-entry" itemprop="articleBody">
         <p>译自<a href="http://www.appcoda.com/custom-pull-to-refresh/" target="_blank" rel="external">Appcoda</a>，作者 <a href="http://www.appcoda.com/author/gabrielth/" target="_blank" rel="external">gabriel theodoropoulos</a></p>
+<p><img src="http://7xnk7q.com1.z0.glb.clouddn.com/pull-to-refresh-featured-1024x533.jpg" alt=""></p>
 <h4 id="演示应用程序">演示应用程序</h4><p>下面的动画显示的是我们在这个教程中准备实现的自定义下拉刷新控件</p>
-<p><img src="./t38_1_final_sample.gif" alt="Alt text"></p>
+<p><img src="http://7xnk7q.com1.z0.glb.clouddn.com/t38_1_final_sample.gif" alt=""></p>
 <p>正如你所见，tableview中包含一些假的数据，因为我们这里的目的并不是从网络服务器中获取真实的数据。这里最重要的部分是在刷新过程中，菊花不会显示；相反，”APPCODE”这个词会在刷新过程中以自定义的样式显示动画效果。</p>
 <p>如果你想知道假的刷新是在什么时候结束的，我能告诉你的是使用了一个timer(NSTimer)对象</p>
 <h4 id="默认的下拉刷新">默认的下拉刷新</h4><p>我们在示例程序中做的第一件事就是在tableview中显示那些假数据。在你下载的启动项目中，已经有一个名为tblDemo的IBOutlet属性连接到storyboard中的tableview，所以我们需要实现必要的tableview delegate和datasource方法。然而，在我们开始之前，我们需要定义在tableview中显示的数据。因此，在ViewController.swift文件中，在类的头部，我们加上下面一行：</p>
@@ -132,7 +137,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">numberOfSectionInTableView</span><span class="params">(tableView: UITableView)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> dataArray.<span class="built_in">count</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> cell = tableView.dequeueReusableCellWithIdentifier(<span class="string">"idCell"</span>, forIndexPath: indexPath) <span class="keyword">as</span>! <span class="type">UITableViewCell</span></span><br><span class="line">	cell.textLabel!.text = dataArray[indexPath.row]</span><br><span class="line">	<span class="keyword">return</span> cell</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">60.0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       </div>
       <footer class="article-footer">
-        <a data-url="http://yoursite.com/2015/10/30/在你的iOS应用中添加自定义的下拉刷新控制/" data-id="cigd4sw040001bywrnr8mcb1i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        <a data-url="http://yoursite.com/2015/10/30/在你的iOS应用中添加自定义的下拉刷新控制/" data-id="cigd50irp0001nbwrybneadfm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
         
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swift/">swift</a></li></ul>
@@ -193,7 +198,7 @@
               
 <a href="/2015/10/30/在你的iOS应用中添加自定义的下拉刷新控制/" class="thumbnail">
   
-    <span style="background-image:url(./t38_1_final_sample.gif
+    <span style="background-image:url(http://7xnk7q.com1.z0.glb.clouddn.com/pull-to-refresh-featured-1024x533.jpg
 )" alt="在你的iOS应用中添加自定义的下拉刷新控制" class="thumbnail-image"></span>
   
 </a>
