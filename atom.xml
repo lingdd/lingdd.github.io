@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[Hexo]]></title>
-  
+  <title><![CDATA[东]]></title>
+  <subtitle><![CDATA[不放弃折腾]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
   <updated>2015-10-16T01:24:08.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
-    <name><![CDATA[John Doe]]></name>
+    <name><![CDATA[ddling]]></name>
     
   </author>
   
