@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不放弃折腾]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-05T11:28:51.000Z</updated>
+  <updated>2016-03-05T11:29:39.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,11 +19,11 @@
     <link href="http://yoursite.com/2016/03/05/The-bio-island/"/>
     <id>http://yoursite.com/2016/03/05/The-bio-island/</id>
     <published>2016-03-05T11:26:13.000Z</published>
-    <updated>2016-03-05T11:28:51.000Z</updated>
-    <content type="html"><![CDATA[<p><a href="lobby.jpg">!lobby</a></p>
+    <updated>2016-03-05T11:29:39.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="/2016/03/05/The-bio-island/lobby.jpg" alt="lobby"></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><a href="lobby.jpg">!lobby</a></p>
+    <![CDATA[<p><img src="/2016/03/05/The-bio-island/lobby.jpg" alt="lobby"></p>
 ]]>
     </summary>
     
